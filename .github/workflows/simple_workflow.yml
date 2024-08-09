@@ -3,7 +3,7 @@ on:
   push:
     branches: [develop]
 jobs:
-  first-job:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
