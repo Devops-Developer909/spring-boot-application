@@ -25,6 +25,8 @@ jobs:
           restore-keys: ${{runner.os}}-m2
       - name : Maven clean install
         run: mvn clean install
+      - name: Run the test cases
+        run: mvn test
 
   deploy:
     needs: build
