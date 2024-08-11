@@ -59,10 +59,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: spring-boot-application-dependency
-        
+      - name: Output the jar files
+        run: ls
       - name: Test Deploy
         run: echo "Running the deployment "
          
