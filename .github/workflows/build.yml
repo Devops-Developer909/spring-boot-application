@@ -64,7 +64,6 @@ jobs:
           name: spring-boot-application-dependency
       - name: Output the jar files
         run: ls
-      - name: Test Deploy
-        run: echo "Running the deployment "
-         
+      - name: Deploy Application
+        run: java -jar spring-boot-application-1.0-SNAPSHOT.jar         
   
