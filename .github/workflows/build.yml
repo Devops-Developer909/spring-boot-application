@@ -25,6 +25,12 @@ jobs:
           restore-keys: ${{runner.os}}-m2
       - name : Maven clean install
         run: mvn clean install
+      - name : Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Jar file
+          path: |
+            target/spring-boot-application-1.0-SNAPSHOT.jar     
   test:
     needs: build
     runs-on : ubuntu-latest
