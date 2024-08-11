@@ -27,7 +27,7 @@ jobs:
           restore-keys: ${{runner.os}}-m2
       - name : Maven clean install
         run: mvn clean install
-      - name: Publich the artificats
+      - name: Setting output variables
         run: echo 'app-dependency=spring-boot-application.jar'>> $GITHUB_OUTPUT';'
         id: public 
       - name : Upload artifacts
@@ -60,7 +60,7 @@ jobs:
         run: mvn test
 
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
@@ -69,6 +69,9 @@ jobs:
           name: spring-boot-application-dependency
       - name: Output the jar files
         run: ls
+      - name: Getting output variables
+        run : echo "${{needs.build.outputs.app-dependency}}"
+        
       - name: Deploy Application
         run: echo "Running the application" 
   
