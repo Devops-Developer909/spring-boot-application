@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      app-dependency: ${{steps.public.app-dependency}}
     steps:
       - name: Get Code
         uses: actions/checkout@v3
@@ -25,6 +27,9 @@ jobs:
           restore-keys: ${{runner.os}}-m2
       - name : Maven clean install
         run: mvn clean install
+      - name: Publich the artificats
+        run: find target/*.jar  -type f -execdir echo 'app-dependency={}'>> $GITHUB_OUTPUT';'
+        id: public 
       - name : Upload artifacts
         uses: actions/upload-artifact@v3
         with:
