@@ -27,8 +27,8 @@ jobs:
 
       - name: Print All directories
           run:|
-            pwd
-            ls -ltr
+          pwd
+          ls -ltr
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
